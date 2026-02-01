@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,17 +19,26 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
+  // RootLayout excpect kar raha hai wo hai children and we displayed here children
   children,
 }: Readonly<{
+  // this is typrescript
+  // here type is React.ReactNode
   children: React.ReactNode;
 }>) {
   return (
+    // here we need to add dark class
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="relative w-full flex items-center justify-center ">
+          <Navbar />
+        </div>
+        {/* <h2>Nav Item</h2> */}
         {children}
       </body>
     </html>
   );
 }
+// The entire frontend code is shipped to user's browser but backend code should never be shipped to user's browser or nahi hi hota hai. So in next js, gives you the capability to write the backend code right here means in this framework and I will keep in mind that code will never ship to user's browser.
